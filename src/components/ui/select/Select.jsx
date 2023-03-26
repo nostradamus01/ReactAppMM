@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { ArrowSvg } from "../../icons/Arrow";
 import './Select.css';
 
