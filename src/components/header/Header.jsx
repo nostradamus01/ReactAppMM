@@ -8,13 +8,20 @@ import { CartSvg } from '../icons/Cart'
 import { LoginSvg } from '../icons/Login'
 import { SunSvg } from '../icons/Sun'
 import { MoonSvg } from '../icons/Moon'
-import { useContext, useEffect } from 'react'
-import { MainContext } from '../../context/MainContext'
+import { useEffect, useState } from 'react'
 import Select from '../ui/select/Select'
 
 const Header = () => {
+  const Themes = Gb.Themes;
 
-  const { Themes, theme, setTheme } = useContext(MainContext);
+  const [isDarkTheme, setDarkTheme] = useState(currentTheme === Themes.DARK);
+
+  useEffect(() => {
+    const theme = isDarkTheme ? Themes.DARK : Themes.LIGHT;
+    if (currentTheme !== theme) {
+      Gb.setTheme(theme, true);
+    }
+  }, [isDarkTheme]);
 
   useEffect(() => {
     const selectConts = document.querySelectorAll('.custom-select');
@@ -70,13 +77,7 @@ const Header = () => {
           <Select options={['AM', 'EN']}/>
           <Select options={['AMD', 'USD']}/>
           <div className="theme">
-            <input className="toggle-theme" type="checkbox" id="theme" name="theme" checked={theme === Themes.dark} onChange={(e) => {
-              if (e.target.checked) {
-                setTheme(Themes.dark);
-              } else {
-                setTheme(Themes.light);
-              }
-            }} />
+            <input className="toggle-theme" type="checkbox" id="theme" name="theme" checked={isDarkTheme} onChange={(e) => { setDarkTheme(e.target.checked) }} />
             <label className="toggle-theme-label" htmlFor="theme">
               <div className="checkbox-theme">
                 <SunSvg />
