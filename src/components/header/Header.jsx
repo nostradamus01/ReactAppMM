@@ -10,12 +10,12 @@ import { SunSvg } from '../icons/Sun'
 import { MoonSvg } from '../icons/Moon'
 import { useEffect, useState } from 'react'
 import Select from '../ui/select/Select'
+import Burger from '../burgerBtn/Burger'
 
 const Header = () => {
   const Themes = Gb.Themes;
-
   const [isDarkTheme, setDarkTheme] = useState(currentTheme === Themes.DARK);
-
+  
   useEffect(() => {
     const theme = isDarkTheme ? Themes.DARK : Themes.LIGHT;
     if (currentTheme !== theme) {
@@ -32,7 +32,7 @@ const Header = () => {
         if (x && x !== selectCont) {
           x.classList.remove('expanded')
         }
-        x = selectCont;
+        x = selectCont;        
         selectCont.classList.toggle('expanded');
       });
       const options = selectCont.querySelectorAll('.custom-option');
@@ -86,6 +86,7 @@ const Header = () => {
               </div>
             </label>
           </div>
+          <Burger />
         </div>
       </div>
     </header>

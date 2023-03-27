@@ -1,5 +1,7 @@
 import './App.css'
 import Header from './components/header/Header'
+import Main from './components/Main/main';
+import Sidebar from './components/Sidebars/sidebar';
 import { MainContext } from './context/MainContext'
 
 const App = () => {
@@ -11,6 +13,8 @@ const App = () => {
     }}>
       <div className="App">
         <Header />
+        <Sidebar />
+        <Main/>
       </div>
     </MainContext.Provider>
   )
